@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Ticket Übersicht</title>
+    <style>
+        a:link {
+            color: #144576;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #144576;
+        }
+
+        a:hover {
+            color: #144576;
+            text-decoration: none;
+        }
+
+        fileUpload {
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+        }
+        .fileUpload input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+
+        <a class="navbar-brand" th:href="@{/home}">
+            <img src="https://pbs.twimg.com/profile_images/648494090108170240/1cM5g0Zh_400x400.png" width="100"
+                 height="100" alt="">
+        </a>
+
+        <form class="form-inline">
+            <a href="#" class="btn btn-secondary" th:href="@{/formular}" style="margin:5px; color: white">Ticket
+                erstellen</a>
+            <a href="#" class="btn btn-secondary" th:href="@{/suche}" style="margin:5px; color: white">Suche</a>
+            <a href="#" class="btn btn-secondary" th:href="@{/logout}" style="margin:5px; color: white">Logout</a>
+        </form>
+    </nav>
+    <h3 style="font-weight:normal;color: #AFAFAF;padding-left: 10px;margin-top:10px;">Meine Tickets</h3>
+
+    <div class="container" >
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Titel</th>
+            </tr>
+            <tr th:each="ticket : ${ticketByOrg}">
+                <td th:text="${ticket.ticketId}">Id</td>
+                <td><a th:href="${'/tickets/' + ticket.ticketId}" th:text="${ticket.ticketTitle}">Titel</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

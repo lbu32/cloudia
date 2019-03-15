@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+
+        .fileUpload {
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .fileUpload input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        .heading {
+            font-weight: normal;
+            color: #AFAFAF;
+            padding-left: 10px
+        }
+
+        .div1 {
+            box-sizing: border-box;
+            margin-left: 10px;
+            margin-bottom: 10px;
+
+        }
+
+        .div2 {
+            margin-left: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+
+        }
+
+        .module {
+            flex: 0 0 50%;
+            display: flex;
+        }
+
+        .module__inputs {
+            flex: 1 0 50%;
+            background-color: #F2F2F2;
+        }
+        .module__uploads {
+            position: relative;
+            flex: 1 0 25%;
+            background-color: #F2F2F2;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-light bg-light">
+                <a class="navbar-brand" th:href="@{/home}">
+                    <img src="https://pbs.twimg.com/profile_images/648494090108170240/1cM5g0Zh_400x400.png" width="100"
+                         height="100" alt="">
+                </a>
+
+                <form class="form-inline" method="post" enctype="multipart/form-data">
+                    <div sec:authorize-url="/admin/">
+                        <a class="btn btn-secondary" th:href="@{/admin/admindashboard}" style="margin:5px; color: white">Admin Dashboard</a>
+                        <a class="btn btn-secondary" th:href="@{/admin/tickets}" style="margin:5px; color: white">Tickets</a>
+                    </div>
+                    <div sec:authorize-url="/user/ticketsmeinerorganisation">
+                        <a class="btn btn-secondary" th:href="@{/user/ticketsmeinerorganisation}" style="margin:5px; color: white">Meine Tickets</a>
+                    </div>
+                    <a class="btn btn-secondary" th:href="@{/formular}" style="margin:5px; color: white">Ticket erstellen</a>
+                    <a class="btn btn-secondary" th:href="@{/logout}" style="margin:5px; color: white">Logout</a>
+                </form>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h3 class="heading" style="margin-top: 10px;">Ticket bearbeiten</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="module">
+                <div class="module__inputs">
+                    <form autocomplete="off" action="#" th:action="@{'/{id}' (id=${ticket.ticketId})}"
+                          th:object="${ticket}" method="post">
+                        <input th:field="*{ticketId}" style="display:none;"/>
+                        <div class="div1">
+                            <input type="text" th:field="*{ticketTitle}" placeholder="Titel" style="margin-top: 10px;"
+                                   maxlength="30" minlength="2" required/>
+                            <label th:if="${#fields.hasErrors('ticketTitle')}" th:errors="*{ticketTitle}"
+                                   class="validation-message"></label>
+                        </div>
+                        <div class="div2">
+                            <textarea style="width: 500px; height: 300px" placeholder="Beschreibung" type="text"
+                                      th:field="*{ticketDescription}"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-secondary" style="margin:10px;">Speichern</button>
+                    </form>
+                </div>
+                <!--  <div class="module__uploads">
+                      <form action="#"  th:action="@{'/uploadfile/{id}' (id=${ticket.ticketId})}"
+                          <input type="file" class="fileUpload btn btn-outline-secondary" name="fileToUpload"/>
+                        <input type="submit" class="fileUpload btn btn-outline-secondary" value="Hochladen"style="margin-top: 10px;" />
+                          </button>
+                      </form>
+                  </div>
+  -->
+                <div class="module__uploads">
+
+                    <form action="#"  th:action="@{'/uploadfile/{id}' (id=${ticket.ticketId})}"
+                          th:object="${ticket}" method="post"  enctype="multipart/form-data"
+                          style="margin-top: 10px;">
+
+
+                        <input type="file" name="fileToUpload"/>
+                        <input type="submit" value="Hochladen" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+</body>
+</html>

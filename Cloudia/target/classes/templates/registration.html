@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Registrieren</title>
+
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-heading">
+            <h3 class="text-center" style="font-weight:normal;color: #AFAFAF;padding-left: 10px; margin-top: 10px;">
+                Registrierung</h3>
+            <img class="card-img-top"
+                 src="https://www.agentursoftware-guide.de/WebRoot/Store/Shops/15460918/MediaGallery/projektron/Projektron_Logo.jpg"
+                 alt="Card image cap">
+            <p></p>
+
+            <div class="modal-body">
+                <form autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post">
+
+                    <div class="form-group">
+                        <div class="input-group">
+							<span class="input-group-addon">
+							</span>
+                            <input type="text" th:field="*{firstName}" placeholder="Vorname" maxlength="30"
+                                   minlength="2" required/>
+                            <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                   class="validation-message"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-user"></span>
+							</span>
+                            <input type="text" th:field="*{lastName}" placeholder="Nachname" maxlength="30"
+                                   minlength="2" required/>
+                            <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                   class="validation-message"></label>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-user"></span>
+							</span>
+                            <input type="email" th:field="*{email}" placeholder="Email" maxlength="30" minlength="5"
+                                   required/>
+                            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                   class="validation-message"></label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-user"></span>
+							</span>
+                            <input type="password" th:field="*{password}" placeholder="Password" maxlength="10"
+                                   minlength="5" required/>
+                            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                   class="validation-message"></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Registrieren</button>
+                    <span class="text-success" th:utext="${successMessage}"></span>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/}" method="get">
+                    <button type="Submit" class="btn btn-secondary">Zur Anmeldung</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

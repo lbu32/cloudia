@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Home</title>
+    <style>
+        .heading {
+            font-weight: normal;
+            color: #AFAFAF;
+            padding-left: 10px
+        }
+
+
+        .module {
+            flex: 0 0 50%;
+            display: flex;
+        }
+
+        .module__inputs {
+            flex: 1 0 75%;
+            background-color: #F2F2F2;
+        }
+        .formdiv {
+            text-align: center;
+            margin: 10px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <!-- <div th:fragment="header">-->
+            <nav class="navbar navbar-light bg-light">
+
+                <img src="https://pbs.twimg.com/profile_images/648494090108170240/1cM5g0Zh_400x400.png" width="100"
+                     height="100" alt="">
+
+                <form class="form-inline">
+                    <div sec:authorize-url="/admin/admindashboard">
+                        <a href="#" class="btn btn-secondary" th:href="@{/admin/admindashboard}"
+                           style="margin:5px; color: white">Admin Dashboard</a>
+                        <a href="#" class="btn btn-secondary" th:href="@{/admin/tickets}"
+                           style="margin:5px; color: white">Tickets</a>
+                    </div>
+                    <a href="#" class="btn btn-secondary" th:href="@{/formular}" style="margin:5px; color: white">Ticket
+                        erstellen</a>
+                    <div sec:authorize-url="/user/ticketsmeinerorganisation">
+                        <a href="#" class="btn btn-secondary" th:href="@{/user/ticketsmeinerorganisation}"
+                           style="margin:5px; color: white">Meine Tickets</a>
+                    </div>
+                    <a href="#" class="btn btn-secondary" th:href="@{/suche}" style="margin:5px; color: white">Suche</a>
+                    <a href="#" class="btn btn-secondary" th:href="@{/logout}" style="margin:5px; color: white">Logout</a>
+                </form>
+            </nav>
+
+
+        </div>
+    </div>
+
+
+    <div class="row" style="margin-top:40px">
+        <div class="col-12">
+            <div class="heading">
+                <span th:utext="${userName}"></span>
+            </div>
+            <p th:utext="${welcomeMessage}"></p>
+            <span class="validation-message" th:utext="${permissionDenied}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="module">
+                <div class="module__inputs">
+                    <form>
+                        <div class="formdiv">
+                            <!--<img src="@{images/goodatgoogling.jpeg}">-->
+                            <img src="http://www.logomarket.de/images/T/19319.jpg" style="position:center;">
+                            <br>
+
+                            <a href="https://accounts.google.com/ServiceLogin" class="btn btn-secondary" style="color: white; margin-top:10px;">Zur Cloud</a>
+                            <!-- <a href="https://www.dropbox.com/de/login" class="btn btn-secondary" style="margin-top:10px; color: white">
+                                Zur Cloud</a>   Dropbox -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- sec:authorize="hasRole('ROLE_ADMIN')"-->
+    </div>
+</div>
+</div>
+</body>
+</html>
+

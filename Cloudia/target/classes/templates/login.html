@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="de"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<header>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Login</title>
+</header>
+<body>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-heading">
+            <form th:action="@{/login}" method="POST">
+                <h3 class="text-center" style="font-weight:normal;color: #AFAFAF;padding-left: 10px; margin-top:10px;">
+                    Login</h3>
+                <img class="card-img-top"
+                     src="https://www.agentursoftware-guide.de/WebRoot/Store/Shops/15460918/MediaGallery/projektron/Projektron_Logo.jpg"
+                     alt="Card image cap">
+                <hr/>
+                <div class="modal-body">
+                    <form action="" role="form">
+                        <div class="form-group">
+                            <div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-user"></span>
+							</span>
+                                <input type="email" class="form-control" id="email" name="email"
+                                       th:placeholder="Email"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-lock"></span>
+							</span>
+                                <input type="password" class="form-control" th:placeholder="Passwort" id="password"
+                                       name="password"/>
+                            </div>
+                        </div>
+
+                        <div align="center" th:if="${param.error}">
+                            <p style="color: #FF1C19;">Email oder Passwort sind nicht gültig</p>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="Submit" name="Submit" value="Bestätigung" class="btn btn-secondary"
+                                    th:text="Login">Login</button>
+                        </div>
+                    </form>
+
+                    <form th:action="@{/registration}" method="get">
+                        <button type="Submit" class="btn btn-link" style="padding-left: 5px;color: #144576;">Noch nicht
+                            registriert?</button>
+                    </form>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+

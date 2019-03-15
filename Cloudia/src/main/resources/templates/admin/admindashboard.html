@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Admin Dashboard</title>
+
+
+</head>
+
+<body>
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/home}">
+            <img src="https://pbs.twimg.com/profile_images/648494090108170240/1cM5g0Zh_400x400.png" width="100"
+                 height="100" alt="">
+        </a>
+        <form class="form-inline">
+            <a href="#" class="btn btn-secondary" th:href="@{/formular}" style="margin:5px; color: white">Ticket
+                erstellen</a>
+            <a href="#" class="btn btn-secondary" th:href="@{/admin/tickets}" style="margin:5px; color: white">Tickets</a>
+            <a href="#" class="btn btn-secondary" th:href="@{/suche}" style="margin:5px; color: white">Suche</a>
+            <a href="#" class="btn btn-secondary" th:href="@{/logout}" style="margin:5px; color: white">Logout</a>
+        </form>
+    </nav>
+
+    <h3 style="font-weight:normal;color: #AFAFAF;padding-left: 10px; margin-top:10px;">Admin Dashboard</h3>
+    <div class="jumbotron jumbotron-fluid" style="margin:20px">
+
+        <div class="container">
+            <h5 style="font-weight:normal;padding-left: 10px; margin-top:5px;">User den Organisationen zuordnen</h5>
+            <form th:action="@{/admin/admindashboard}" method="POST">
+                
+                <input type="email" class="form-control" name="email" placeholder="Email"/>
+                <input type="text" class="form-control" id="organization_id" name="organization_id" placeholder="ID"/>
+                <input type="submit" class="btn btn-secondary" style="margin-top:5px;" value="Submit">
+            </form>
+        </div>
+
+        <br/>
+        <div class="container">
+            <h5 style="font-weight:normal;padding-left: 10px; margin-top:5px;">Neue Organisationen anlegen</h5>
+            <form th:action="@{/admin/admindashboard}" th:object="${organization}" method="POST">
+                <input type="text" class="form-control" id="organizationName" name="organizationName"
+                       placeholder="Organisation"/>
+                <input type="text" class="form-control" id="organizationToken" name="organizationToken"
+                       placeholder="Access Token"/><!-- wor placeholder stand th: , warum?-->
+                <input type="submit" class="btn btn-secondary" style="margin-top:5px;" value="Submit">
+                <span class="text-success" th:utext="${successMessage}"></span>
+            </form>
+        </div>
+        <br/>
+        <div class="container">
+            <h5 style="font-weight:normal;padding-left: 10px; margin-top:5px;">User eine Rolle zuordnen</h5>
+            <form th:action="@{/admin/admindashboard}" th:object="${user}" method="POST">
+                <input type="email" class="form-control" name="email" placeholder="Email"/>
+                <input type="text" class="form-control" id="roleId" name="roleId" placeholder="Rolle"/>
+                <input type="submit" class="btn btn-secondary" style="margin-top:5px;" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
